@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/sulphitic786/99tech.git/static/css/main.ef52d2ab.css",
+    "main.js": "/sulphitic786/99tech.git/static/js/main.12b3905b.js",
+    "index.html": "/sulphitic786/99tech.git/index.html",
+    "main.ef52d2ab.css.map": "/sulphitic786/99tech.git/static/css/main.ef52d2ab.css.map",
+    "main.12b3905b.js.map": "/sulphitic786/99tech.git/static/js/main.12b3905b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef52d2ab.css",
+    "static/js/main.12b3905b.js"
+  ]
+}
