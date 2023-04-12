@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import PaginationPage from './PaginationPage';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { CardMedia } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import Pagination from '@mui/material/Pagination';
 
 
 const rows = [
@@ -20,10 +22,13 @@ const rows = [
 const TableData=(({})=>{
 const [rows, setRows] = useState("");
 const [loading, setLoading] = useState(true);
+const [currentPage, setCurrentPage] = useState(1);
+const [postsPerPage] = useState(20);
+
     const getData = async () => {
         const resp = await fetch('https://api.sampleapis.com/countries/countries');
         const json = await resp.json();
-        console.log("setRows", json)
+        // console.log("setRows", json)
         setRows(json);
         setLoading(false)
       }
@@ -31,6 +36,13 @@ const [loading, setLoading] = useState(true);
       useEffect(() => {
         getData();
       }, []);
+
+      // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = rows.slice(indexOfFirstPost, indexOfLastPost);
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <TableContainer align="center" component={Paper}>
@@ -49,7 +61,7 @@ const [loading, setLoading] = useState(true);
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows && rows.map((row) => (
+          {currentPosts && currentPosts.map((row) => (
             <TableRow key={row.name}>
               <TableCell align="left">
               <CardMedia
@@ -71,6 +83,11 @@ const [loading, setLoading] = useState(true);
         </TableBody>
       </Table>
     }
+    <PaginationPage
+        postsPerPage={postsPerPage}
+        totalPosts={rows.length}
+        paginate={paginate}
+      />
     </TableContainer>
   );
 })
