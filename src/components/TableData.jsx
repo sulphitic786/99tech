@@ -23,7 +23,7 @@ const TableData=(({})=>{
 const [rows, setRows] = useState("");
 const [loading, setLoading] = useState(true);
 const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage] = useState(20);
+const [postsPerPage] = useState(25);
 
     const getData = async () => {
         const resp = await fetch('https://api.sampleapis.com/countries/countries');
@@ -47,9 +47,9 @@ const [postsPerPage] = useState(20);
   return (
     <TableContainer align="center" component={Paper}>
     {loading?
-          <Typography sx={{ mt: 3, mb: 2, textAlign: 'center', color:'#00272a' }}> <h3>Please wait...</h3> </Typography>
+          <Typography sx={{ mt: 3, mb: 2, textAlign: 'center', color:'#00272a' }}> <h3>Loading Data...</h3> </Typography>
           :
-      <Table sx={{ width: 950, maxHeight:"50mh", overflow:"scroll" }} aria-label="caption table">
+      <Table sx={{ width: 950, height:"50vh", overflow:"scroll" }} aria-label="caption table">
         <TableHead>
           <TableRow>
             <TableCell align="left">Flag</TableCell>
